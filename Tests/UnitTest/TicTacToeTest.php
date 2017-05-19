@@ -28,7 +28,7 @@ class TicTacToeTest extends \PHPUnit_Framework_TestCase
         $row = 0;
         $column = 0;
 
-        $grid->doMove($row, $column, Cell::O);
+        $grid->fillCell($row, $column, Cell::O);
 
         $this->assertFalse($grid->isEmpty());
     }
@@ -36,7 +36,7 @@ class TicTacToeTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function cell_filled_with_given_value()
+    public function given_a_cell_after_place_them_at_the_board_the_value_is_still_correct()
     {
         $grid = new Grid();
 
@@ -44,9 +44,9 @@ class TicTacToeTest extends \PHPUnit_Framework_TestCase
         $column = 0;
         $value = Cell::O;
 
-        $expectedCell = $this->getValuedCell($row, $column, $value);
+        $expectedCell = Cell::init($row, $column, $value);
 
-        $grid->doMove($row, $column, $value);
+        $grid->fillCell($row, $column, $value);
 
         $cell = $grid->getCell($row,$column);
 
@@ -55,20 +55,27 @@ class TicTacToeTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($cell->isCellType($value));
     }
 
-    // ======================== Helpers =========================
-
     /**
-     * @param $row
-     * @param $column
-     * @param $value
-     *
-     * @return Cell
+     * @test
      */
-    private function getValuedCell($row, $column, $value): Cell
+    public function given_a_cell_try_to_place_them_on_an_invalid_position()
     {
-        $expectedCell = new Cell($row, $column);
-        $expectedCell->setValue($value);
+        $grid = new Grid();
 
-        return $expectedCell;
+        $row = 10;
+        $column = 10;
+        $value = Cell::X;
+
+        $expectedCell = Cell::init($row, $column, $value);
+
+        $grid->fillCell($row, $column, $value);
+
+        $cell = $grid->getCell($row,$column);
+
+        $this->assertNotEquals($expectedCell, null);
+
+        $this->assertNull($cell);
     }
+
+    // ======================== Helpers =========================
 }

@@ -29,7 +29,7 @@ class Cell
         $this->value = null;
     }
 
-    public static function init($x, $y, $value)
+    public static function init($x, $y, $value): Cell
     {
         $cell = new Cell($x, $y);
         $cell->value = $value;

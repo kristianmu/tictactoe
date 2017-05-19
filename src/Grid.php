@@ -22,8 +22,10 @@ class Grid
 
     }
 
-    public function getCell($x, $y): Cell
+    public function getCell($x, $y): ?Cell
     {
+        if ($x > 2 || $y > 2)
+            return null;
         return $this->cells["$x$y"];
     }
 
@@ -37,8 +39,10 @@ class Grid
         return true;
     }
 
-    public function doMove(int $row, int $column, ?string $value)
+    public function fillCell(int $row, int $column, ?string $value)
     {
+        if ($row > 2 || $column > 2)
+            return;
         $this->cells["$row$column"]->setValue($value);
     }
 }
