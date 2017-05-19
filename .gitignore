@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+*~
+.DS_Store
+selenium-debug.log
+.idea/jspackager.iml
+.idea/modules.xml
+.idea/php.xml
+.idea/vcs.xml
+.idea/workspace.xml
